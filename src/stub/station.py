@@ -22,10 +22,12 @@ fund_agent_if_low(agent.wallet.address())
 @agent.on_event("startup")
 async def startup_event(ctx: Context):
     ctx.logger.info(f"Agent: {agent.name} ({agent.address})")
-    asyncio.ensure_future(introduce_agent(ctx))
+
+    # run function in background so agent can fully start while registering
+    asyncio.ensure_future(register_at_gas_goblin(ctx))
 
 
-async def introduce_agent(ctx: Context):
+async def register_at_gas_goblin(ctx: Context):
     while not ctx.storage.get("isRegistered"):
         ctx.logger.info(f"Trying to introduce: {agent.name} ({agent.address})")
         await ctx.send(

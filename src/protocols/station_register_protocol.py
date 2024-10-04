@@ -19,6 +19,7 @@ protocol = Protocol()
 async def station_register(ctx: Context, sender: str, request: StationRegisterRequest):
     ctx.logger.info(f"Sender: {sender} sent: {request.lat} {request.long}")
 
+    # todo: store stations in DB
     stations: list[Station] = ctx.storage.get("stations")
 
     if stations is None:
