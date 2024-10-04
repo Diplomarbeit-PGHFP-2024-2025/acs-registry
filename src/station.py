@@ -10,7 +10,7 @@ agent = Agent(
     name="station",
     seed="Station1",
     port=8001,
-    endpoint=["http://127.0.0.1:8001/submit"]
+    endpoint=["http://127.0.0.1:8001/submit"],
 )
 
 fund_agent_if_low(agent.wallet.address())
@@ -27,8 +27,10 @@ async def introduce_agent(ctx: Context):
         print(ctx.storage.get("isRegistered"))
 
         ctx.logger.info(f"Trying to introduce: {agent.name} ({agent.address})")
-        await ctx.send("agent1qw9sc5v7c0zk98xf0ht7s8ga7gteyf8lekgfpgtlct3zq8z4rhx7773t546",
-                       StationRequest(lat=1.0, long=1.0))
+        await ctx.send(
+            "agent1qw9sc5v7c0zk98xf0ht7s8ga7gteyf8lekgfpgtlct3zq8z4rhx7773t546",
+            StationRequest(lat=1.0, long=1.0),
+        )
 
         await sleep(6)
 

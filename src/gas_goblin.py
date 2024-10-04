@@ -7,7 +7,7 @@ agent = Agent(
     name="gas-goblin",
     seed="GasGoblin1",
     port=8000,
-    endpoint=["http://127.0.0.1:8000/submit"]
+    endpoint=["http://127.0.0.1:8000/submit"],
 )
 agent.include(station_register_protocol)
 fund_agent_if_low(agent.wallet.address())
