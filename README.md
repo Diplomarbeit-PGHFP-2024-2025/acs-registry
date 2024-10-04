@@ -16,11 +16,16 @@ just is a task running which is used in this project
 
 ## usage
 
-start the GasGoblin agent
+### first time
+
+install deps <br>
+`just i`
+
+start the GasGoblin agent <br>
 `just run`
 
-start the testing station agent
+start the testing station agent <br>
 `just station`
 
-start the testing car agent
+start the testing car agent <br>
 `just car`

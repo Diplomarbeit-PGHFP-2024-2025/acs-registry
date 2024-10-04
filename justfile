@@ -1,4 +1,9 @@
-set shell := ["powershell.exe", "-c"]
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
+alias i := install
+
+install:
+    poetry install
 
 run:
     poetry run python src/__main__.py
