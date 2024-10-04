@@ -1,7 +1,7 @@
 from uagents import Agent, Context
 from uagents.setup import fund_agent_if_low
 
-from things.station_protocol import register_station_protocol
+from protocols.station_register_protocol import protocol as station_register_protocol
 
 agent = Agent(
     name="gas-goblin",
@@ -9,13 +9,14 @@ agent = Agent(
     port=8000,
     endpoint=["http://127.0.0.1:8000/submit"]
 )
-agent.include(register_station_protocol)
+agent.include(station_register_protocol)
 fund_agent_if_low(agent.wallet.address())
 
 
 @agent.on_event("startup")
 async def introduce_agent(ctx: Context):
-    ctx.logger.info(f"Hello, I'm agent {agent.name} and my address is {agent.address}.")
+    ctx.logger.info(f"Agent: {agent.name} ({agent.address})")
+
 
 if __name__ == "__main__":
     agent.run()
