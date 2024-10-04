@@ -1,0 +1,21 @@
+name: CI
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.7.1"
+      - name: Install dependencies
+        run: poetry install
+      - name: Lint
+        run: poetry run ruff check
+      - name: Format
+        run: poetry run ruff format --check
