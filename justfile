@@ -17,7 +17,7 @@ run:
     poetry run python src/__main__.py
 
 car:
-    poetry run python src/car.py
+    poetry run python src/stub/car.py
 
 station:
-    poetry run python src/station.py
+    poetry run python src/stub/station.py
