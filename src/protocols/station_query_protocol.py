@@ -1,19 +1,11 @@
-from uagents import Context, Protocol, Model
+from aca_protocols.station_query_protocol import (
+    StationQueryRequest,
+    StationQueryResponse,
+    protocol,
+)
+from uagents import Context
 
 from domain.station import Station
-
-
-class StationQueryRequest(Model):
-    lat: float
-    long: float
-    radius: float
-
-
-class StationQueryResponse(Model):
-    stations: list[str]
-
-
-protocol = Protocol()
 
 
 @protocol.on_message(model=StationQueryRequest, replies=StationQueryResponse)

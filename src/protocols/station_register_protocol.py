@@ -1,18 +1,11 @@
-from uagents import Context, Protocol, Model
+from aca_protocols.station_register_protocol import (
+    StationRegisterRequest,
+    StationRegisterResponse,
+    protocol,
+)
+from uagents import Context
 
 from domain.station import Station
-
-
-class StationRegisterRequest(Model):
-    lat: float
-    long: float
-
-
-class StationRegisterResponse(Model):
-    pass
-
-
-protocol = Protocol()
 
 
 @protocol.on_message(model=StationRegisterRequest, replies=StationRegisterResponse)
