@@ -1,19 +1,7 @@
-from uagents import Context, Protocol, Model
+from aca_protocols.station_query_protocol import StationQueryRequest, StationQueryResponse, protocol
+from uagents import Context
 
 from domain.station import Station
-
-
-class StationQueryRequest(Model):
-    lat: float
-    long: float
-    radius: float
-
-
-class StationQueryResponse(Model):
-    stations: list[str]
-
-
-protocol = Protocol()
 
 
 @protocol.on_message(model=StationQueryRequest, replies=StationQueryResponse)
@@ -30,9 +18,9 @@ def filter_stations(stations: list[Station], request: StationQueryRequest) -> li
     def is_in_range(station: Station):
         lat_dif = station[0] - request.lat
         long_dif = station[1] - request.long
-        distance_square = lat_dif**2 + long_dif**2
+        distance_square = lat_dif ** 2 + long_dif ** 2
 
-        return distance_square < request.radius**2
+        return distance_square < request.radius ** 2
 
     def to_address(station: Station):
         return station[2]
