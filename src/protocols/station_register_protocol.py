@@ -1,4 +1,8 @@
-from aca_protocols.station_register_protocol import StationRegisterRequest, StationRegisterResponse, protocol
+from aca_protocols.station_register_protocol import (
+    StationRegisterRequest,
+    StationRegisterResponse,
+    protocol,
+)
 from uagents import Context
 
 from domain.station import Station
