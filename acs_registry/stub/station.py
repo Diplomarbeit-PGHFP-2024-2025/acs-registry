@@ -9,6 +9,8 @@ from aca_protocols.station_register_protocol import (
     StationRegisterRequest,
 )
 
+from aca_protocols.acs_registry_id import acs_id
+
 agent = Agent(
     name="station",
     seed="Station1",
@@ -31,7 +33,7 @@ async def register_at_registry(ctx: Context):
     while not ctx.storage.get("isRegistered"):
         ctx.logger.info(f"Trying to introduce: {agent.name} ({agent.address})")
         await ctx.send(
-            "agent1qwp6dtwalq0akjym8j8dygn8smtxkw9dqpf03z3sdn3qaps2w0d2xplufdv",
+            acs_id,
             StationRegisterRequest(lat=1.0, long=1.0),
         )
 

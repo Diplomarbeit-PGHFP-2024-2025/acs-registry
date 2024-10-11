@@ -6,6 +6,8 @@ from aca_protocols.station_query_protocol import (
     StationQueryResponse,
 )
 
+from aca_protocols.acs_registry_id import acs_id
+
 agent = Agent(
     name="car",
     seed="Car1",
@@ -20,7 +22,7 @@ fund_agent_if_low(agent.wallet.address())
 async def introduce_agent(ctx: Context):
     ctx.logger.info(f"Agent: {agent.name} ({agent.address})")
     await ctx.send(
-        "agent1qw9sc5v7c0zk98xf0ht7s8ga7gteyf8lekgfpgtlct3zq8z4rhx7773t546",
+        acs_id,
         StationQueryRequest(lat=1.0, long=1.0, radius=5.0),
     )
 
