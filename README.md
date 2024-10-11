@@ -1,4 +1,4 @@
-# GasGoblin
+# ACS-Registry
 
 ## Installation
 
@@ -21,7 +21,7 @@ install deps <br>
 
 ---
 
-start the GasGoblin agent <br>
+start the ACS-Registy agent <br>
 `just run`
 
 start the testing station agent <br>

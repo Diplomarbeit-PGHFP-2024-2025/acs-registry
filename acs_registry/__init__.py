@@ -5,8 +5,8 @@ from protocols.station_register_protocol import protocol as station_register_pro
 from protocols.station_query_protocol import protocol as station_query_protocol
 
 agent = Agent(
-    name="gas-goblin",
-    seed="GasGoblin1",
+    name="acs-registry",
+    seed="ACSRegistry1",
     port=8000,
     endpoint=["http://127.0.0.1:8000/submit"],
 )
@@ -20,3 +20,7 @@ agent.include(station_query_protocol)
 @agent.on_event("startup")
 async def introduce_agent(ctx: Context):
     ctx.logger.info(f"Agent: {agent.name} ({agent.address})")
+
+
+if __name__ == "__main__":
+    agent.run()

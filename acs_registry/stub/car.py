@@ -1,7 +1,10 @@
 from uagents import Agent, Context
 from uagents.setup import fund_agent_if_low
 
-from protocols.station_query_protocol import StationQueryRequest, StationQueryResponse
+from aca_protocols.station_query_protocol import (
+    StationQueryRequest,
+    StationQueryResponse,
+)
 
 agent = Agent(
     name="car",

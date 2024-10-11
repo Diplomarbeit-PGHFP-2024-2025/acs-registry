@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "gas-goblin"
+name = "acs-registry"
 version = "0.1.0"
 description = ""
 authors = ["tobinio <Tobias.frischmann1@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-aca-protocols = { git = "https://github.com/Diplomarbeit-PGHFP-2024-2025/aca-protocols.git" }
+aca-protocols = { git = "https://github.com/Diplomarbeit-PGHFP-2024-2025/aca-protocols.git", rev = "2deef8ffdd1b62387fa382409e1849dae632826c" }
 python = ">=3.12,<3.13"
 uagents = "^0.15.2"
 uagents-ai-engine = "^0.5.0"
