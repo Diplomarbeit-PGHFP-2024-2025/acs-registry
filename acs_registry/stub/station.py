@@ -42,7 +42,7 @@ async def register_at_registry(ctx: Context):
 
 @agent.on_message(StationRegisterResponse)
 async def on_is_registered(ctx: Context, sender: str, _msg: StationRegisterResponse):
-    ctx.logger.info(f"got registered by: {sender}")
+    ctx.logger.info(f"got registered by: {sender}; TTL: {_msg.ttl}")
     ctx.storage.set("isRegistered", True)
 
 

@@ -19,6 +19,8 @@ just is a task running which is used in this project
 install deps <br>
 `just i`
 
+start MongoDB Docker <br>
+`just mongo`
 ---
 
 start the ACS-Registy agent <br>
