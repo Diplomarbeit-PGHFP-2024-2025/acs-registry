@@ -15,12 +15,12 @@ protocol = Protocol()
 async def station_query(ctx: Context, sender: str, request: StationQueryRequest):
     ctx.logger.info(f"Car: {sender} requested: {request}")
 
-    stations_list = filter_stations2(station_collection, request)
+    stations_list = filter_stations(station_collection, request)
 
     await ctx.send(sender, StationQueryResponse(stations=stations_list))
 
 
-def filter_stations2(collection, request: StationQueryRequest) -> list[str]:
+def filter_stations(collection, request: StationQueryRequest) -> list[str]:
     cursor = collection.find(
         {
             "location": {
