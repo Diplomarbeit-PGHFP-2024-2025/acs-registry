@@ -1,6 +1,7 @@
 import asyncio
 from asyncio import sleep
 import datetime
+import socket
 
 from uagents import Agent, Context
 from uagents.setup import fund_agent_if_low
@@ -12,11 +13,14 @@ from aca_protocols.station_register_protocol import (
 
 from aca_protocols.acs_registry_id import acs_id
 
+hostname = socket.gethostname()
+IPAddr = socket.gethostbyname(hostname)
+
 agent = Agent(
     name="station",
     seed="Station1",
     port=8001,
-    endpoint=["http://127.0.0.1:8001/submit"],
+    endpoint=["http://{}:8001/submit".format(IPAddr)],
 )
 
 fund_agent_if_low(agent.wallet.address())

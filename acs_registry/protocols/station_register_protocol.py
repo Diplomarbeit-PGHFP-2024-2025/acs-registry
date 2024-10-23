@@ -8,7 +8,7 @@ from uagents import Context, Protocol
 
 import os
 from dotenv import load_dotenv
-from acs_registry.mongodb.get_mongo_db import get_collection
+from mongodb.get_mongo_db import get_collection
 
 load_dotenv()
 
