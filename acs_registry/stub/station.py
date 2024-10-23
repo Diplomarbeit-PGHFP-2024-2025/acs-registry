@@ -1,5 +1,6 @@
 import asyncio
 from asyncio import sleep
+import datetime
 
 from uagents import Agent, Context
 from uagents.setup import fund_agent_if_low
@@ -30,7 +31,8 @@ async def startup_event(ctx: Context):
 
 
 async def register_at_registry(ctx: Context):
-    while not ctx.storage.get("isRegistered"):
+    ctx.storage.set("expireAt", datetime.datetime.fromtimestamp(86400).timestamp())
+    while datetime.datetime.fromtimestamp(ctx.storage.get("expireAt")) < datetime.datetime.now():
         ctx.logger.info(f"Trying to introduce: {agent.name} ({agent.address})")
         await ctx.send(
             acs_id,
@@ -43,7 +45,7 @@ async def register_at_registry(ctx: Context):
 @agent.on_message(StationRegisterResponse)
 async def on_is_registered(ctx: Context, sender: str, _msg: StationRegisterResponse):
     ctx.logger.info(f"got registered by: {sender}; TTL: {_msg.ttl}")
-    ctx.storage.set("isRegistered", True)
+    ctx.storage.set("expireAt", datetime.datetime.now().timestamp() + (_msg.ttl * 0.5))
 
 
 if __name__ == "__main__":

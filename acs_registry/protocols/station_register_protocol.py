@@ -1,14 +1,13 @@
+import datetime
+
 from aca_protocols.station_register_protocol import (
     StationRegisterRequest,
     StationRegisterResponse,
 )
 from uagents import Context, Protocol
 
-from domain.station import Station
-
 import os
 from dotenv import load_dotenv
-
 from mongodb.get_mongo_db import get_collection
 
 load_dotenv()
@@ -22,24 +21,31 @@ protocol = Protocol()
 async def station_register(ctx: Context, sender: str, request: StationRegisterRequest):
     ctx.logger.info(f"Sender: {sender} sent: {request.lat} {request.long}")
 
+    ttl = int(os.getenv("TTL"))
+
     stations = station_collection.find()
+
+    expiration_date = calculate_expiration_date(ttl);
 
     for station in stations:
         if station["address"] == sender:
+            station_collection.update_one({"address": station["address"]},
+                                          {"$set": {"expireAt": expiration_date}})
 
-            station_collection.update_one({"address": station["address"]}, {"$set":{"ttl": int(os.getenv("TTL"))}})
             ctx.logger.info(f"TTL updated for {sender}")
-            await ctx.send(sender, StationRegisterResponse(ttl=int(os.getenv("TTL"))))
+            await ctx.send(sender, StationRegisterResponse(ttl=ttl))
             return
-
 
     station_collection.insert_one({"address": sender,
                                    "location": {
                                        "type": "Point",
-                                       "coordinates": [request.lat, request.long]
+                                       "coordinates": [request.long, request.lat],
                                    },
-                                   "ttl": int(os.getenv("TTL"))
+                                   "expireAt": expiration_date
                                    })
 
+    await ctx.send(sender, StationRegisterResponse(ttl=ttl))
 
-    await ctx.send(sender, StationRegisterResponse(ttl=int(os.getenv("TTL"))))
+
+def calculate_expiration_date(ttl: int) -> datetime.datetime:
+    return datetime.datetime.now(datetime.UTC) + datetime.timedelta(seconds=ttl)

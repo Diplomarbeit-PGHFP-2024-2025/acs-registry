@@ -6,4 +6,6 @@ def get_database():
     return client["station_db"]
 
 def get_collection():
-    return get_database()["stations"]
+    collection = get_database()["stations"]
+    collection.create_index([("expireAt", 1)], expireAfterSeconds=0)
+    return collection
