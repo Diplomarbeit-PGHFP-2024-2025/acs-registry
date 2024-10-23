@@ -4,7 +4,7 @@ from aca_protocols.station_query_protocol import (
 )
 from uagents import Context, Protocol
 
-from mongodb.get_mongo_db import get_collection
+from acs_registry.mongodb.get_mongo_db import get_collection
 
 station_collection = get_collection()
 
