@@ -25,7 +25,7 @@ async def station_register(ctx: Context, sender: str, request: StationRegisterRe
 
     stations = station_collection.find()
 
-    expiration_date = calculate_expiration_date(ttl);
+    expiration_date = calculate_expiration_date(ttl)
 
     for station in stations:
         if station["address"] == sender:
