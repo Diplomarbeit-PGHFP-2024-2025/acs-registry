@@ -21,18 +21,21 @@ async def station_query(ctx: Context, sender: str, request: StationQueryRequest)
 
 
 def filter_stations2(collection, request: StationQueryRequest) -> list[str]:
-    cursor = collection.find({
-        "location": {
-            "$near": {
-                "$geometry": {
-                    "type": "Point",
-                    "coordinates": [request.long, request.lat]
-                },
-                "$minDistance": 0,
-                "$maxDistance": request.radius  # in meters
+    cursor = collection.find(
+        {
+            "location": {
+                "$near": {
+                    "$geometry": {
+                        "type": "Point",
+                        "coordinates": [request.long, request.lat],
+                    },
+                    "$minDistance": 0,
+                    "$maxDistance": request.radius,  # in meters
+                }
             }
-        }
-    }, {"_id": 0, "address": 1})
+        },
+        {"_id": 0, "address": 1},
+    )
 
     return station_cursor_to_address(cursor)
 

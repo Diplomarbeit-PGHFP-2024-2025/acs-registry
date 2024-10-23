@@ -32,7 +32,10 @@ async def startup_event(ctx: Context):
 
 async def register_at_registry(ctx: Context):
     ctx.storage.set("expireAt", datetime.datetime.fromtimestamp(86400).timestamp())
-    while datetime.datetime.fromtimestamp(ctx.storage.get("expireAt")) < datetime.datetime.now():
+    while (
+        datetime.datetime.fromtimestamp(ctx.storage.get("expireAt"))
+        < datetime.datetime.now()
+    ):
         ctx.logger.info(f"Trying to introduce: {agent.name} ({agent.address})")
         await ctx.send(
             acs_id,
