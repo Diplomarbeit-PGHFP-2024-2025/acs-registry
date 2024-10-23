@@ -23,4 +23,4 @@ async def station_register(ctx: Context, sender: str, request: StationRegisterRe
     stations.append(Station(request.lat, request.long, sender))
     ctx.storage.set("stations", stations)
 
-    await ctx.send(sender, StationRegisterResponse())
+    await ctx.send(sender, StationRegisterResponse(ttl=10))
