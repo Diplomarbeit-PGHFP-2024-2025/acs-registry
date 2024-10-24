@@ -1,3 +1,5 @@
+import socket
+
 from uagents import Agent, Context
 from uagents.setup import fund_agent_if_low
 
@@ -8,11 +10,14 @@ from aca_protocols.station_query_protocol import (
 
 from aca_protocols.acs_registry_id import acs_id
 
+hostname = socket.gethostname()
+IPAddr = socket.gethostbyname(hostname)
+
 agent = Agent(
     name="car",
     seed="Car1",
     port=8002,
-    endpoint=["http://127.0.0.1:8002/submit"],
+    endpoint=["http://{}:8002/submit".format(IPAddr)],
 )
 
 fund_agent_if_low(agent.wallet.address())

@@ -24,3 +24,6 @@ car:
 
 station:
     poetry run python acs_registry/stub/station.py
+
+mongo:
+    docker compose -f acs_registry/mongodb/compose.yml up

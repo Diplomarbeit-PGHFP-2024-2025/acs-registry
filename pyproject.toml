@@ -10,6 +10,8 @@ aca-protocols = { git = "https://github.com/Diplomarbeit-PGHFP-2024-2025/aca-pro
 python = ">=3.12,<3.13"
 uagents = "^0.17.0"
 ruff = "^0.6.8"
+python-dotenv = "^1.0.1"
+pymongo = {extras = ["srv"], version = "^4.10.1"}
 
 
 [build-system]

@@ -3,8 +3,8 @@ import socket
 from uagents import Agent, Context
 from uagents.setup import fund_agent_if_low
 
-from protocols.station_register_protocol import protocol as station_register_protocol
 from protocols.station_query_protocol import protocol as station_query_protocol
+from protocols.station_register_protocol import protocol as station_register_protocol
 
 hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
