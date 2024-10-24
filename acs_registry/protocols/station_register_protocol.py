@@ -23,30 +23,26 @@ async def station_register(ctx: Context, sender: str, request: StationRegisterRe
 
     ttl = int(os.getenv("TTL"))
 
-    stations = station_collection.find()
-
     expiration_date = calculate_expiration_date(ttl)
 
-    for station in stations:
-        if station["address"] == sender:
-            station_collection.update_one(
-                {"address": station["address"]}, {"$set": {"expireAt": expiration_date}}
-            )
-
-            ctx.logger.info(f"TTL updated for {sender}")
-            await ctx.send(sender, StationRegisterResponse(ttl=ttl))
-            return
-
-    station_collection.insert_one(
+    result = station_collection.update_one(
+        {"address": sender},
         {
-            "address": sender,
-            "location": {
-                "type": "Point",
-                "coordinates": [request.long, request.lat],
-            },
-            "expireAt": expiration_date,
-        }
+            "$set": {
+                "expireAt": expiration_date,
+                "location": {
+                    "type": "Point",
+                    "coordinates": [request.long, request.lat],
+                },
+            }
+        },
+        upsert=True,
     )
+
+    if result.matched_count > 0:
+        ctx.logger.info(f"TTL updated for {sender}")
+    else:
+        ctx.logger.info(f"New station added for {sender}")
 
     await ctx.send(sender, StationRegisterResponse(ttl=ttl))
 
