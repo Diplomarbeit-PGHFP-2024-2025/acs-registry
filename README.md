@@ -19,8 +19,13 @@ just is a task running which is used in this project
 install deps <br>
 `just i`
 
+install docker
+[docs](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+afterwards
+`sudo dockerd`
+
 start MongoDB Docker <br>
-`just mongo`
+`sudo just mongo`
 ---
 
 start the ACS-Registy agent <br>
