@@ -16,7 +16,7 @@ agent = Agent(
     endpoint=["http://{}:8000/submit".format(IPAddr)],
 )
 
-fund_agent_if_low(agent.wallet.address())
+fund_agent_if_low(str(agent.wallet.address()))
 
 agent.include(station_register_protocol)
 agent.include(station_query_protocol)
