@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 aca-protocols = { git = "https://github.com/Diplomarbeit-PGHFP-2024-2025/aca-protocols.git", rev = "bb4b4cd176b42fdec82ac08593957161af0c6e2f" }
 python = ">=3.12,<3.13"
-uagents = "^0.17.0"
+uagents = "^0.17.1"
 ruff = "^0.6.8"
 python-dotenv = "^1.0.1"
 pymongo = {extras = ["srv"], version = "^4.10.1"}

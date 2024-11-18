@@ -28,7 +28,7 @@ start MongoDB Docker <br>
 `sudo just mongo`
 ---
 
-start the ACS-Registy agent <br>
+start the ACS-Registry agent <br>
 `just run`
 
 start the testing station agent <br>
