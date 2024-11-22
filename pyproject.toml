@@ -6,7 +6,7 @@ authors = ["tobinio <Tobias.frischmann1@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-aca-protocols = { git = "https://github.com/Diplomarbeit-PGHFP-2024-2025/aca-protocols.git", rev = "9839bb490e06d4aadb3b66d2a35062360d4dd62d" }
+aca-protocols = { git = "https://github.com/Diplomarbeit-PGHFP-2024-2025/aca-protocols.git", rev = "1cff4119948d933274e99c51f898e8da1fe88ac7" }
 python = ">=3.12,<3.13"
 uagents = "^0.17.1"
 ruff = "^0.7.4"
