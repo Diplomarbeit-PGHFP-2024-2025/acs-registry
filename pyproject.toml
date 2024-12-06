@@ -6,12 +6,12 @@ authors = ["tobinio <Tobias.frischmann1@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-aca-protocols = { git = "https://github.com/Diplomarbeit-PGHFP-2024-2025/aca-protocols.git", rev = "1cff4119948d933274e99c51f898e8da1fe88ac7" }
+aca-protocols = { git = "https://github.com/Diplomarbeit-PGHFP-2024-2025/aca-protocols.git", rev = "cb30517492fa3555847de7ee8d5fc10596364a91" }
 python = ">=3.12,<3.13"
 uagents = "^0.17.1"
 ruff = "^0.7.4"
 python-dotenv = "^1.0.1"
-pymongo = {extras = ["srv"], version = "^4.10.1"}
+pymongo = { extras = ["srv"], version = "^4.10.1" }
 
 
 [build-system]
