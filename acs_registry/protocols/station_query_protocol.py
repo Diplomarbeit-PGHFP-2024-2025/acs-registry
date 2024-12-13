@@ -1,3 +1,5 @@
+from typing import List
+
 from aca_protocols.station_query_protocol import (
     StationQueryRequest,
     StationQueryResponse,
@@ -22,6 +24,23 @@ async def station_query(ctx: Context, sender: str, request: StationQueryRequest)
 def filter_stations(
     stations: list[StationDataObject], request: StationQueryRequest
 ) -> list[str]:
+    """
+    Filters a list of stations to include only those within the radius of the
+    specified location in the request.
+
+    This function processes the input stations and filters out those that
+    are outside the radius defined in the provided request. The returned
+    value will only include the addresses of the stations that meet the
+    criteria defined by the location and radius in the query request.
+
+    :param stations: A list of StationDataObject instances containing
+        information about stations.
+    :param request: An instance of StationQueryRequest specifying the latitude,
+        longitude, and radius for the filtering operation.
+    :return: A list of addresses corresponding to the stations within
+        the specified radius.
+    :rtype: list[str]
+    """
     return [
         station.address
         for station in filter_stations_within_radius(
@@ -38,6 +57,7 @@ def euclidean_distance(
     :param coord1: Tuple (x1, y1) for the first point.
     :param coord2: Tuple (x2, y2) for the second point.
     :return: Distance between the two points.
+    :rtype: float
     """
     x1, y1 = coord1
     x2, y2 = coord2
@@ -45,14 +65,15 @@ def euclidean_distance(
 
 
 def filter_stations_within_radius(
-    stations: list[StationDataObject], center: tuple[float, float], radius: float
-) -> list[StationDataObject]:
+    stations: List[StationDataObject], center: tuple[float, float], radius: float
+) -> List[StationDataObject]:
     """
     Filters StationDataObject instances within a specific radius on a 2D plane.
     :param stations: List of StationDataObject instances.
     :param center: Tuple (x, y) of the center point.
     :param radius: Radius in the same units as coordinates.
     :return: List of StationDataObject instances within the radius.
+    :rtype: List[StationDataObject]
     """
     return [
         station

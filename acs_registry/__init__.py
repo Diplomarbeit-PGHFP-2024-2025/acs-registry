@@ -37,7 +37,7 @@ async def check_expired_stations(ctx: Context):
     )
 
     for station in stations:
-        if station.expired():
+        if station.is_expired():
             ctx.logger.info(f"Station expired: {station.address}")
             stations.remove(station)
 
