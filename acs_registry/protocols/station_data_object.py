@@ -14,11 +14,7 @@ class StationDataObject(Model):
 
     def to_json(self):
         """
-        Converts the object into a JSON string representation. The method serializes the attributes
-        of the object into JSON format, leveraging the default behavior to convert any unsupported
-        types through their `__dict__` attribute. The resulting JSON string is indented for
-        readability and sorted by keys.
-
+        Converts the object into a JSON string representation.
         :return: A string containing the JSON representation of the object.
         :rtype: str
         """
@@ -28,12 +24,6 @@ class StationDataObject(Model):
     def list_to_json(data: List["StationDataObject"]) -> List[str]:
         """
         Converts a list of StationDataObject instances to a list of JSON strings.
-
-        This method iterates through the provided list of StationDataObject instances
-        and invokes their respective `to_json()` method to obtain their JSON
-        representations. The resulting JSON strings are collected in a new list, which
-        is then returned.
-
         :param data: A list of StationDataObject instances to be converted to JSON strings.
         :type data: List[StationDataObject]
         :return: A list of JSON strings representing the given StationDataObject instances.
@@ -44,10 +34,7 @@ class StationDataObject(Model):
     @staticmethod
     def from_json(data: str):
         """
-        Converts a JSON string into a StationDataObject using the provided JSON decoding and
-        object hook. This method deserializes the JSON input into a Python object by mapping
-        its keys to the attributes of the StationDataObject class.
-
+        Converts a JSON string into a StationDataObject
         :param data: JSON-formatted string containing station data
         :type data: str
         :return: A StationDataObject instance constructed from the provided JSON data
@@ -59,12 +46,6 @@ class StationDataObject(Model):
     def list_from_json(data: List[str]) -> List["StationDataObject"]:
         """
         Converts a list of JSON strings into a list of StationDataObject instances.
-
-        This static method iterates through each JSON string in the provided list,
-        parses them into StationDataObject instances using the from_json method,
-        and compiles them into a new list. This is useful for quickly transforming
-        a collection of serialized data into usable StationDataObject objects.
-
         :param data: A list of JSON strings, where each string represents the
                      serialized data conforming to the StationDataObject structure.
         :return: A list of StationDataObject instances created by parsing
@@ -77,10 +58,6 @@ class StationDataObject(Model):
         """
         Determines whether the current object's expiration timestamp has elapsed based
         on the current time.
-
-        Checks the `expiration_timestamp` attribute of the instance and compares it
-        to the current timestamp retrieved from the system clock.
-
         :return: True if the instance's expiration timestamp is earlier than the current
                  timestamp, indicating expiration. Otherwise, False.
         :rtype: bool
