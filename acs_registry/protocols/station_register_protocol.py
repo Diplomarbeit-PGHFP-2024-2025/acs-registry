@@ -57,16 +57,8 @@ async def station_register(ctx: Context, sender: str, request: StationRegisterRe
 def calculate_expiration_date(ttl: int) -> float:
     """
     Calculates the expiration date timestamp based on the provided time-to-live (TTL) value.
-
-    This function determines the UNIX-like timestamp representing the date and time
-    when an entity will expire. It uses the current date and time as the starting
-    point and adds the TTL, expressed in seconds, to the current time. The result is
-    returned in the form of a floating-point number which represents the timestamp.
-
-    :param ttl: The time-to-live value in seconds. It defines how many seconds from
-        the current moment it takes for something to expire.
+    :param ttl: The time-to-live value in seconds
     :return: The expiration date as a UNIX-like timestamp in float format,
-        representing seconds since the epoch.
     :rtype: float
     """
     return (

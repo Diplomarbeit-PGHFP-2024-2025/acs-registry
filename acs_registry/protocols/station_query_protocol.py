@@ -27,12 +27,6 @@ def filter_stations(
     """
     Filters a list of stations to include only those within the radius of the
     specified location in the request.
-
-    This function processes the input stations and filters out those that
-    are outside the radius defined in the provided request. The returned
-    value will only include the addresses of the stations that meet the
-    criteria defined by the location and radius in the query request.
-
     :param stations: A list of StationDataObject instances containing
         information about stations.
     :param request: An instance of StationQueryRequest specifying the latitude,

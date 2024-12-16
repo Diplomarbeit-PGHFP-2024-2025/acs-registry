@@ -41,9 +41,9 @@ async def check_expired_stations(ctx: Context):
             ctx.logger.info(f"Station expired: {station.address}")
             stations.remove(station)
 
-        ctx.storage.set("stations", stations)
+    ctx.storage.set("stations", StationDataObject.list_to_json(stations))
 
-        ctx.logger.info(f"Stations after expire check: {len(stations)}")
+    ctx.logger.info(f"Stations after expire check: {len(stations)}")
 
 
 if __name__ == "__main__":
