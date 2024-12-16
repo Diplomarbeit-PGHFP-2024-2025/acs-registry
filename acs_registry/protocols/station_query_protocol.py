@@ -15,7 +15,7 @@ protocol = Protocol()
 async def station_query(ctx: Context, sender: str, request: StationQueryRequest):
     ctx.logger.info(f"Car: {sender} requested: {request}")
 
-    stations_list = filter_stations(ctx.storage.get("stations"), request)
+    stations_list = filter_stations(StationDataObject.list_from_json(ctx.storage.get("stations")), request)
     ctx.logger.info(f"Found {stations_list} stations")
 
     await ctx.send(sender, StationQueryResponse(stations=stations_list))
